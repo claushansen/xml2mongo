@@ -9,43 +9,45 @@
 
 class XML2Mongo{
 	
-	private $source_xml_path = NULL;
+	protected $source_xml_path = NULL;
 	
-	private $mongourl = NULL;
+	protected $mongourl = NULL;
 	
-	private $mongocon = NULL;
+	protected $mongocon = NULL;
 	
-	private $mongodb = NULL;
+	protected $mongodb = NULL;
 	
-	private $limit = NULL;
+	protected $seperate_dbs = true;
 	
-	private $debug = false;
+	protected $limit = NULL;
 	
-	private $debug_start_time = NULL;
+	protected $debug = false;
 	
-	private $debug_end_time = NULL;
+	protected $debug_start_time = NULL;
 	
-	private $debug_show_objects = false;
+	protected $debug_end_time = NULL;
 	
-	private $reader = NULL;
+	protected $debug_show_objects = false;
 	
-	private $collect_vehicles = true;
+	protected $reader = NULL;
 	
-	private $collect_filter = NULL;
+	protected $collect_vehicles = true;
 	
-	private $collect_unique_only = true;
+	protected $collect_filter = NULL;
 	
-	private $collect_registered_only = true;
+	protected $collect_unique_only = true;
 	
-	private $collect_extras = true;
+	protected $collect_registered_only = true;
 	
-	private $maerker = array();
+	protected $collect_extras = true;
 	
-	private $modeller = array();
+	protected $maerker = array();
 	
-	private $varianter = array();
+	protected $modeller = array();
 	
-	private $processcounter = 0;
+	protected $varianter = array();
+	
+	protected $processcounter = 0;
 	
 	public function __construct(){
 		$this->reader = new XMLReader();
@@ -171,6 +173,27 @@ class XML2Mongo{
 		$this->collect_registered_only = $bool;
 		if($this->debug){
 		echo 'Collect registered vehicles only: '.$bool.'<br>';	
+		}
+		return $this;		
+		
+	}
+	
+	/**
+	* Function set_seperate_dbs
+	* 
+	* Sets $set_seperate_dbs flag, defaults to true.
+	* 
+	* If set to true we store the collected vehicles,maerke,model and variants in seperate databases per vehicle type  
+	* if false we store it in one database with vehicle type prefixes for maerke,model and variants  
+	*
+	* @param Boolean $bool
+	* @return Object $this
+	*/
+	public function set_seperate_dbs($bool){
+		
+		$this->seperate_dbs = $bool;
+		if($this->debug){
+		echo 'Collect to seperate_dbs: '.$bool.'<br>';	
 		}
 		return $this;		
 		
