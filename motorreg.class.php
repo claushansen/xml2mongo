@@ -24,22 +24,23 @@ class Motorreg extends XML2Mongo{
 		
 		//collecting maerker,Models and variants
 		$ret->_id = $obj->KoeretoejIdent;
-		$ret->RegistreringNummerNummer = $obj->RegistreringNummerNummer;
-		$ret->KoeretoejOplysningModelAar = (int)date('Y', strtotime($obj->KoeretoejOplysningGrundStruktur->KoeretoejOplysningFoersteRegistreringDato));
+		$ret->Licensplate = $obj->RegistreringNummerNummer;
+		$ret->Regstatus = $obj->KoeretoejOplysningGrundStruktur->KoeretoejOplysningStatus;
+		$ret->ModelYear = (int)date('Y', strtotime($obj->KoeretoejOplysningGrundStruktur->KoeretoejOplysningFoersteRegistreringDato));
 		//(int)$obj->KoeretoejOplysningGrundStruktur->KoeretoejOplysningModelAar;
-		$ret->KoeretoejArtNavn = $obj->KoeretoejArtNavn;
-		$ret->KoeretoejMaerkeTypeNummer = $obj->KoeretoejOplysningGrundStruktur->KoeretoejBetegnelseStruktur->KoeretoejMaerkeTypeNummer;
-		$ret->KoeretoejMaerkeTypeNavn = $obj->KoeretoejOplysningGrundStruktur->KoeretoejBetegnelseStruktur->KoeretoejMaerkeTypeNavn;
-		$ret->KoeretoejModelTypeNummer = $obj->KoeretoejOplysningGrundStruktur->KoeretoejBetegnelseStruktur->Model->KoeretoejModelTypeNummer;
-		$ret->KoeretoejModelTypeNavn = $obj->KoeretoejOplysningGrundStruktur->KoeretoejBetegnelseStruktur->Model->KoeretoejModelTypeNavn;
+		$ret->VehicleType = $obj->KoeretoejArtNavn;
+		$ret->BrandId = $obj->KoeretoejOplysningGrundStruktur->KoeretoejBetegnelseStruktur->KoeretoejMaerkeTypeNummer;
+		$ret->Brand = $obj->KoeretoejOplysningGrundStruktur->KoeretoejBetegnelseStruktur->KoeretoejMaerkeTypeNavn;
+		$ret->ModelId = $obj->KoeretoejOplysningGrundStruktur->KoeretoejBetegnelseStruktur->Model->KoeretoejModelTypeNummer;
+		$ret->Model = $obj->KoeretoejOplysningGrundStruktur->KoeretoejBetegnelseStruktur->Model->KoeretoejModelTypeNavn;
 		if(isset($obj->KoeretoejOplysningGrundStruktur->KoeretoejBetegnelseStruktur->Variant->KoeretoejVariantTypeNummer)){
-		$ret->KoeretoejVariantTypeNummer = $obj->KoeretoejOplysningGrundStruktur->KoeretoejBetegnelseStruktur->Variant->KoeretoejVariantTypeNummer;
-		$ret->KoeretoejVariantTypeNavn = $obj->KoeretoejOplysningGrundStruktur->KoeretoejBetegnelseStruktur->Variant->KoeretoejVariantTypeNavn;
+		$ret->VariantId = $obj->KoeretoejOplysningGrundStruktur->KoeretoejBetegnelseStruktur->Variant->KoeretoejVariantTypeNummer;
+		$ret->Variant = $obj->KoeretoejOplysningGrundStruktur->KoeretoejBetegnelseStruktur->Variant->KoeretoejVariantTypeNavn;
 		}
 		if(isset($obj->KoeretoejOplysningGrundStruktur->KoeretoejMotorStruktur->KoeretoejMotorSlagVolumen)){
 			$motorvol = (float)$obj->KoeretoejOplysningGrundStruktur->KoeretoejMotorStruktur->KoeretoejMotorSlagVolumen / 1000;
 			$motorvol = number_format($motorvol,1);
-			$ret->KoeretoejMotorSlagVolumen = $motorvol;
+			$ret->Engine = (float)$motorvol;
 		}
 		
 	
