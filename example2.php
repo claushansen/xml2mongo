@@ -9,7 +9,7 @@ include_once('Motorreg.class.php');
 
 $xmlprocess = new Motorreg;
 $xmlprocess->set_debug(true);
-$xmlprocess->set_collect_vehicles(false);
+//$xmlprocess->set_collect_vehicles(false);
 $xmlprocess->set_collect_extras(false);
 $xmlprocess->set_collect_filter('Personbil');
 $xmlprocess->set_collect_filter('Varebil');
@@ -18,9 +18,9 @@ $xmlprocess->set_collect_filter('Lastbil');
 $xmlprocess->set_collect_filter('Varebil');
 $xmlprocess->set_collect_filter('Motorcykel');
 $xmlprocess->set_collect_filter('Varebil');
-$xmlprocess->set_debug_show_objects(true);
+//$xmlprocess->set_debug_show_objects(true);
 $xmlprocess->set_xml_source_path(__DIR__.'/xml/ESStatistikListeModtag.xml');
-$xmlprocess->set_limit(100);
+//$xmlprocess->set_limit(100);
 $xmlprocess->init();
 
 
